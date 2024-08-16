@@ -23,9 +23,11 @@ const plugin: JupyterFrontEndPlugin<void> = {
   description: 'A JupyterLab extension.',
   autoStart: true,
   optional: [ISettingRegistry, INotebookTracker],
-  activate: (app: JupyterFrontEnd, 
+  activate: (
+    app: JupyterFrontEnd,
     settingRegistry: ISettingRegistry | null,
-    notebooks: INotebookTracker,) => {
+    notebooks: INotebookTracker
+  ) => {
     console.log('JupyterLab extension presentpy_jupyter is activated!');
 
     if (settingRegistry) {
@@ -35,10 +37,12 @@ const plugin: JupyterFrontEndPlugin<void> = {
           console.log('presentpy_jupyter settings loaded:', settings.composite);
         })
         .catch(reason => {
-          console.error('Failed to load settings for presentpy_jupyter.', reason);
+          console.error(
+            'Failed to load settings for presentpy_jupyter.',
+            reason
+          );
         });
     }
-
 
     const { commands } = app;
 
@@ -55,21 +59,25 @@ const plugin: JupyterFrontEndPlugin<void> = {
           const settings = ServerConnection.makeSettings();
           const requestUrl = `${settings.baseUrl}presentpy-jupyter/download`;
           try {
-            const response = await ServerConnection.makeRequest(requestUrl, {
-              method: 'POST',
-              body: JSON.stringify({ "path": path }),
-            }, settings);
-            
+            const response = await ServerConnection.makeRequest(
+              requestUrl,
+              {
+                method: 'POST',
+                body: JSON.stringify({ path: path })
+              },
+              settings
+            );
+
             if (response.status !== 200) {
               const data = await response.json();
               throw new Error(data.message || 'Unknown error');
             }
-            const notebook_name = path?.split("/").pop() || "notebook.ipynb";
+            const notebook_name = path?.split('/').pop() || 'notebook.ipynb';
             const blob = await response.blob();
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${notebook_name.split(".")[0]}.odp`;
+            a.download = `${notebook_name.split('.')[0]}.odp`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -77,7 +85,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
           } catch (error) {
             console.error('Failed to download notebook:', error);
           }
-
         }
       }
     });
@@ -88,9 +95,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
         `An error occurred during the execution of jlab-examples:command.\n${reason}`
       );
     });
-
   }
-
 };
 
 export default plugin;

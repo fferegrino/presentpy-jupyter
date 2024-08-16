@@ -1,17 +1,15 @@
 {
-    "jupyter.lab.toolbars": {
-      "Notebook": [
-        {
-          "name": "clear-all-outputs",
-          "command": "presentpy_jupyter:convert"
-        }
-      ]
-    },
-
-    "jupyter.lab.shortcuts": [],
-    "title": "presentpy_jupyter",
-    "description": "presentpy_jupyter settings.",
-    "type": "object",
-    "properties": {},
-    "additionalProperties": false
-  }
+  "jupyter.lab.toolbars": {
+    "Notebook": [
+      {
+        "name": "clear-all-outputs",
+        "command": "presentpy_jupyter:convert"
+      }
+    ]
+  },
+  "title": "presentpy_jupyter",
+  "description": "presentpy_jupyter settings.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
