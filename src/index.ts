@@ -3,6 +3,8 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
+import { ISettingRegistry } from '@jupyterlab/settingregistry';
+
 import { requestAPI } from './handler';
 
 /**
@@ -12,8 +14,20 @@ const plugin: JupyterFrontEndPlugin<void> = {
   id: 'presentpy_jupyter:plugin',
   description: 'A JupyterLab extension.',
   autoStart: true,
-  activate: (app: JupyterFrontEnd) => {
+  optional: [ISettingRegistry],
+  activate: (app: JupyterFrontEnd, settingRegistry: ISettingRegistry | null) => {
     console.log('JupyterLab extension presentpy_jupyter is activated!');
+
+    if (settingRegistry) {
+      settingRegistry
+        .load(plugin.id)
+        .then(settings => {
+          console.log('presentpy_jupyter settings loaded:', settings.composite);
+        })
+        .catch(reason => {
+          console.error('Failed to load settings for presentpy_jupyter.', reason);
+        });
+    }
 
     requestAPI<any>('get-example')
       .then(data => {

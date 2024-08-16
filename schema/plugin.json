@@ -1,0 +1,17 @@
+{
+    "jupyter.lab.toolbars": {
+      "Notebook": [
+        {
+          "name": "clear-all-outputs",
+          "command": "notebook:clear-all-cell-outputs"
+        }
+      ]
+    },
+
+    "jupyter.lab.shortcuts": [],
+    "title": "presentpy_jupyter",
+    "description": "presentpy_jupyter settings.",
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
