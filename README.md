@@ -5,7 +5,7 @@
 A JupyterLab extension.
 
 This extension is composed of a Python package named `presentpy_jupyter`
-for the server extension and a NPM package named `presentpy_js`
+for the server extension and a NPM package named `presentpy_jupyter`
 for the frontend extension.
 
 ## Requirements
@@ -94,7 +94,7 @@ pip uninstall presentpy_jupyter
 
 In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
 command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `presentpy_js` within that folder.
+folder is located. Then you can remove the symlink named `presentpy_jupyter` within that folder.
 
 ### Packaging the extension
 

@@ -6,7 +6,7 @@ author_name: Antonio Feregrino
 has_binder: false
 has_settings: false
 kind: server
-labextension_name: presentpy_js
+labextension_name: presentpy_jupyter
 project_short_description: A JupyterLab extension.
 python_name: presentpy_jupyter
 repository: ''
