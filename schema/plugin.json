@@ -3,7 +3,7 @@
       "Notebook": [
         {
           "name": "clear-all-outputs",
-          "command": "notebook:clear-all-cell-outputs"
+          "command": "presentpy_jupyter:convert"
         }
       ]
     },

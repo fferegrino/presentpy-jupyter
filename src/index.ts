@@ -38,7 +38,44 @@ const plugin: JupyterFrontEndPlugin<void> = {
           `The presentpy_jupyter server extension appears to be missing.\n${reason}`
         );
       });
+
+
+    const { commands } = app;
+
+    const command = 'presentpy_jupyter:convert';
+
+    // Add a command
+    commands.addCommand(command, {
+      label: 'ODP',
+      caption: 'Export to ODP',
+      execute: (args: any) => {
+        const orig = args['origin'];
+        console.log(`presentpy_jupyter:command has been called from ${orig}.`);
+        if (orig !== 'init') {
+
+          requestAPI<any>('get-example')
+          .then(data => {
+            console.log(data);
+          })
+          .catch(reason => {
+            console.error(
+              `The presentpy_jupyter server extension appears to be missing.\n${reason}`
+            );
+          });
+
+        }
+      }
+    });
+
+    // Call the command execution
+    commands.execute(command, { origin: 'init' }).catch(reason => {
+      console.error(
+        `An error occurred during the execution of jlab-examples:command.\n${reason}`
+      );
+    });
+
   }
+
 };
 
 export default plugin;
