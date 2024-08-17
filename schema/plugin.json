@@ -7,9 +7,76 @@
       }
     ]
   },
-  "title": "presentpy_jupyter",
-  "description": "presentpy_jupyter settings.",
+  "title": "PresentPy",
+  "description": "PresentPy configuration",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "theme": {
+      "title": "Theme",
+      "description": "The Pygments theme used to generate the slides.",
+      "$ref": "#/definitions/theme",
+      "default": "default"
+    },
+    "keep_odp": {
+      "title": "Keep ODP",
+      "description": "Keep the ODP file after conversion.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "definitions": {
+    "theme": {
+      "enum": [
+        "bw",
+        "sas",
+        "staroffice",
+        "xcode",
+        "default",
+        "monokai",
+        "lightbulb",
+        "github-dark",
+        "rrt",
+        "abap",
+        "algol",
+        "algol_nu",
+        "arduino",
+        "autumn",
+        "borland",
+        "colorful",
+        "igor",
+        "lovelace",
+        "murphy",
+        "pastie",
+        "rainbow_dash",
+        "stata-light",
+        "trac",
+        "vs",
+        "emacs",
+        "tango",
+        "solarized-light",
+        "manni",
+        "gruvbox-light",
+        "friendly",
+        "friendly_grayscale",
+        "perldoc",
+        "paraiso-light",
+        "zenburn",
+        "nord",
+        "material",
+        "one-dark",
+        "dracula",
+        "nord-darker",
+        "gruvbox-dark",
+        "stata-dark",
+        "paraiso-dark",
+        "coffee",
+        "solarized-dark",
+        "native",
+        "inkpot",
+        "fruity",
+        "vim"
+      ]
+    }
+  },
   "additionalProperties": false
 }

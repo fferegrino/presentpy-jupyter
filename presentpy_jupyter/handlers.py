@@ -1,10 +1,11 @@
 import json
 import subprocess
-import tempfile
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
 import tornado
+import os
 from pathlib import Path
+
 
 class RouteHandler(APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
@@ -12,17 +13,22 @@ class RouteHandler(APIHandler):
     # Jupyter server
     @tornado.web.authenticated
     def post(self):
-        data = json.loads(self.request.body.decode('utf-8'))
-        notebook_path = data['path']
-        notebook_path = Path(notebook_path)
+        data = json.loads(self.request.body.decode("utf-8"))
+        notebook_path = Path(data["path"])
+        theme = data["theme"]
+        keep_odp = data["keep_odp"]
 
         output_name = notebook_path.stem + ".odp"
-        self.set_header('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation')
-        self.set_header('Content-Disposition', f'attachment; filename="{output_name}"')
-        with tempfile.NamedTemporaryFile(delete=False) as tmp:
-            subprocess.run(["presentpy", notebook_path, "--output", tmp.name])
-            tmp.seek(0)
-            self.write(tmp.read())
+        self.set_header("Content-Type", "application/vnd.openxmlformats-officedocument.presentationml.presentation")
+        self.set_header("Content-Disposition", f'attachment; filename="{output_name}"')
+
+        subprocess.run(["presentpy", notebook_path, "--output", notebook_path.parent / output_name, "--theme", theme])
+
+        with open(notebook_path.parent / output_name, "rb") as f:
+            self.write(f.read())
+
+        if not keep_odp:
+            os.remove(notebook_path.parent / output_name)
 
 
 def setup_handlers(web_app):

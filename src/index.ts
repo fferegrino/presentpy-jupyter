@@ -53,17 +53,31 @@ const plugin: JupyterFrontEndPlugin<void> = {
       label: 'ODP',
       caption: 'Export to ODP',
       execute: async (args: any) => {
+        const extensionSettings = await settingRegistry?.load(plugin.id);
         const path = notebooks.currentWidget?.sessionContext.path;
         const orig = args['origin'];
         if (orig !== 'init') {
           const settings = ServerConnection.makeSettings();
           const requestUrl = `${settings.baseUrl}presentpy-jupyter/download`;
           try {
+            const theme =
+              (extensionSettings?.get('theme').composite as string) ||
+              'default';
+            const keep_odp =
+              (extensionSettings?.get('keep_odp').composite as boolean) ||
+              false;
+            console.log(
+              `Converting ${path} to ODP with theme ${theme} and keep_odp ${keep_odp}`
+            );
             const response = await ServerConnection.makeRequest(
               requestUrl,
               {
                 method: 'POST',
-                body: JSON.stringify({ path: path })
+                body: JSON.stringify({
+                  path: path,
+                  theme: theme,
+                  keep_odp: keep_odp
+                })
               },
               settings
             );
