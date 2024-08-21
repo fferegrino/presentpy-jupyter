@@ -1,2 +1,3 @@
 build
 twine
+bump-my-version
