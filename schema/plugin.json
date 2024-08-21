@@ -2,7 +2,9 @@
   "jupyter.lab.toolbars": {
     "Notebook": [
       {
-        "name": "clear-all-outputs",
+        "name": "donwload-presentpy-slides",
+        "icon": "ui-components:download",
+        "label": "Slides",
         "command": "presentpy_jupyter:convert"
       }
     ]

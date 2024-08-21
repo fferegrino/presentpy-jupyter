@@ -7,9 +7,9 @@
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "",
+    "homepage": "https://github.com/fferegrino/presentpy-jupyter",
     "bugs": {
-        "url": "/issues"
+        "url": "https://github.com/fferegrino/presentpy-jupyter/issues"
     },
     "license": "BSD-3-Clause",
     "author": {
@@ -27,7 +27,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": ".git"
+        "url": "https://github.com/fferegrino/presentpy-jupyter"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
