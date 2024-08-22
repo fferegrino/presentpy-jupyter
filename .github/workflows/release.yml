@@ -25,16 +25,37 @@ jobs:
         python_version: ${{ env.PYTHON_VERSION }}
 
     - name: Install dependencies
+      run: python -m pip install -r dev-requirements.txt
+  
+    - name: Lint the extension
       run: |
-        python -m pip install -r dev-requirements.txt
+        set -eux
+        jlpm
+        jlpm run lint:check
 
-    - name: Build
-      run: make build
+    - name: Build the extension
+      run: |
+        set -eux
+        python -m pip install .[test]
+        jupyter server extension list
+        jupyter server extension list 2>&1 | grep -ie "presentpy_jupyter.*OK"
+        jupyter labextension list
+        jupyter labextension list 2>&1 | grep -ie "presentpy_jupyter.*OK"
+        python -m jupyterlab.browser_check
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
+    - name: Package the extension
+      run: |
+        set -eux
+        pip install build
+        python -m build
+        pip uninstall -y "presentpy_jupyter" jupyterlab
+
+    - name: Upload extension packages
+      uses: actions/upload-artifact@v4
       with:
-        path: dist
+          name: extension-artifacts
+          path: dist/presentpy_jupyter*
+          if-no-files-found: error
 
     - name: Release
       if: startsWith(github.ref, 'refs/tags/')

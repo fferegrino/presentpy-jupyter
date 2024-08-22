@@ -1,3 +1,4 @@
+jupyterlab
 build
 twine
 bump-my-version

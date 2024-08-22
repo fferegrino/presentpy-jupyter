@@ -97,7 +97,8 @@ commit = true
 message = "Bump version: {current_version} → {new_version}"
 pre_commit_hooks = [
     "npm i --package-lock-only",
-    "git add package-lock.json"
+    "npm run prettier --write package-lock.json",
+    "git add package-lock.json yarn.lock",
 ]
 
 [[tool.bumpversion.files]]
