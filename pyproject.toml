@@ -98,6 +98,7 @@ message = "Bump version: {current_version} → {new_version}"
 pre_commit_hooks = [
     "npm i --package-lock-only",
     "npm run prettier --write package-lock.json",
+    "jlpm",
     "git add package-lock.json yarn.lock",
 ]
 
