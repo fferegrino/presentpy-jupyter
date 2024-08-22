@@ -1,6 +1,6 @@
 # presentpy_jupyter
 
-[![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/build.yml)
+[![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/release.yml)
 
 A JupyterLab extension.
 
