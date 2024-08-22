@@ -1,6 +1,6 @@
 {
     "name": "presentpy_jupyter",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "A JupyterLab extension.",
     "keywords": [
         "jupyter",
