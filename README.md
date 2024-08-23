@@ -1,12 +1,8 @@
-# presentpy_jupyter
+# PresentPy for Jupyter Lab
 
-[![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/release.yml)
+This is a Jupyter Lab extension that brings [PresentPy, a tool to convert Jupyter Notebooks into beautiful slides](https://github.com/fferegrino/presentpy) to your Jupyter Notebook at the click of a button.
 
-A JupyterLab extension.
-
-This extension is composed of a Python package named `presentpy_jupyter`
-for the server extension and a NPM package named `presentpy_jupyter`
-for the frontend extension.
+[![Github Actions Status](https://github.com/fferegrino/presentpy-jupyter/workflows/Release/badge.svg)](https://github.com/fferegrino/presentpy-jupyter/actions/workflows/release.yml) [![PyPI](https://img.shields.io/pypi/v/presentpy-jupyter)](https://pypi.org/project/presentpy-jupyter/)
 
 ## Requirements
 
